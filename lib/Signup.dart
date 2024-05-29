@@ -1,5 +1,8 @@
 import 'package:delivero/Constant/Styles.dart';
 import 'package:delivero/Constant/colors.dart';
+import 'package:delivero/Login.dart';
+import 'package:delivero/home.dart';
+
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
@@ -10,6 +13,51 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  FocusNode _focusNode = FocusNode();
+  FocusNode _focusNode2 = FocusNode();
+  Color _backgroundColor = formColor;
+  Color _backgroundColor2 = formColor;
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_handleFocusChange);
+    _focusNode2.addListener(_handleFocusChange2);
+  }
+
+  @override
+  void dispose() {
+    _focusNode2.removeListener(_handleFocusChange2);
+    _focusNode.removeListener(_handleFocusChange);
+    _focusNode.dispose();
+    _focusNode2.dispose();
+
+    super.dispose();
+  }
+
+  void _handleFocusChange() {
+    if (_focusNode.hasFocus) {
+      setState(() {
+        _backgroundColor = Colors.white; // Change to your preferred focus color
+      });
+    } else {
+      setState(() {
+        _backgroundColor = formColor; // Original color
+      });
+    }
+  }
+
+  void _handleFocusChange2() {
+    if (_focusNode2.hasFocus) {
+      setState(() {
+        _backgroundColor2 =
+            Colors.white; // Change to your preferred focus color
+      });
+    } else {
+      setState(() {
+        _backgroundColor2 = formColor; // Original color
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +71,10 @@ class _SignupState extends State<Signup> {
                 Center(
                   child: Column(
                     children: [
-                      Image.asset(
-                          "assets/images/Group 206.png"), // Replace with your logo
+                      Hero(
+                        tag: 1,
+                        child: Image.asset("assets/images/Group 206.png"),
+                      ), // Replace with your logo
                       SizedBox(height: 7),
                       Text('Welcome Back',
                           style: HeadingStyle.copyWith(
@@ -36,35 +86,44 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 SizedBox(height: 40),
-                Text('Email Address',
-                    style: TextStyle(fontSize: 16, color: Colors.black54)),
+                Text('Email Address', style: FredokaStyle),
                 TextFormField(
+                  focusNode: _focusNode,
                   decoration: InputDecoration(
-                    hintText: 'fastfood@gmail.com',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.orange),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.orange, width: 2),
-                    ),
-                  ),
+                      fillColor: _backgroundColor,
+                      filled: true,
+                      hintText: 'fastfood@gmail.com',
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFDEBC7)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFDEBC7)),
+                      )),
                 ),
                 SizedBox(height: 20),
-                Text('Password',
-                    style: TextStyle(fontSize: 16, color: Colors.black54)),
+                Text('Password', style: FredokaStyle),
                 TextFormField(
+                  obscuringCharacter: "*",
+                  showCursor: true,
+                  focusNode: _focusNode2,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: '**********',
+                    hintText: 'Enter your password',
+                    hintStyle: FredokaStyle,
+                    fillColor: _backgroundColor2,
+                    filled: true,
                     suffixIcon: IconButton(
                       icon: Icon(Icons.visibility_off),
                       onPressed: () {},
                     ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.orange),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: formColor),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.orange, width: 2),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: formColor,
+                      ),
                     ),
                   ),
                 ),
@@ -86,7 +145,13 @@ class _SignupState extends State<Signup> {
                 SizedBox(height: 24),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Red,
                       padding:
@@ -107,9 +172,13 @@ class _SignupState extends State<Signup> {
                     children: [
                       Text("Don't have an account? "),
                       GestureDetector(
-                        onTap: () {}, // Sign up screen action
-                        child: Text('Sign In',
-                            style: TextStyle(color: Colors.red)),
+                        onTap: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => Login()));
+                        }, // Sign up screen action
+                        child: Text('Sign up',
+                            style: FredokaStyle.copyWith(
+                                color: Red, fontSize: 18)),
                       ),
                     ],
                   ),

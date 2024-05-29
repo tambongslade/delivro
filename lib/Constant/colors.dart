@@ -5,5 +5,5 @@ Color white = Colors.white;
 Color black = Colors.black;
 Color grey = Colors.grey;
 Color grey2 = Color(0xffE9E9E9);
-Color Textfieldborder = Color(0xffFDEBC7);
-Color FormColor = Color(0xffFDEBC7);
+Color textfieldborder = Color(0xffFDEBC7);
+Color formColor = Color(0xffFDEBC7);
