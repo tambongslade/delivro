@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Top Categories",
+                  "Top Categories vivi",
                   style: HeadingStyle.copyWith(fontSize: 25),
                 ),
               ),
