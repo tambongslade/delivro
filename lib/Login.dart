@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
                 Text('Create your account', style: FredokaStyle),
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Email Address', style: FredokaStyle)),
+                    child: Text('Email ffr RSS Address', style: FredokaStyle)),
                 TextFormField(
                   decoration: InputDecoration(
                       fillColor: formColor,
