@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
               children: const [
                 TextSpan(text: 'De', style: TextStyle(color: Colors.black)),
                 TextSpan(text: 'live', style: TextStyle(color: Colors.red)),
-                TextSpan(text: 'ro', style: TextStyle(color: Colors.black)),
+                TextSpan(text: 'rohs', style: TextStyle(color: Colors.black)),
               ]),
         ),
         actions: [
